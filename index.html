@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>TV Globinho 24h</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      gap: 10px;
+    }
+    .item {
+      width: calc(20% - 10px);
+      cursor: pointer;
+      text-align: center;
+    }
+    .item img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 2px solid #444;
+    }
+    .item p {
+      margin-top: 5px;
+      font-size: 14px;
+    }
+    #player {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      flex-direction: c
