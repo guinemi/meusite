@@ -1,47 +1,127 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>TV Globinho 24h</title>
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
-      gap: 10px;
-    }
-    .item {
-      width: calc(20% - 10px);
-      cursor: pointer;
-      text-align: center;
-    }
-    .item img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      border: 2px solid #444;
-    }
-    .item p {
-      margin-top: 5px;
-      font-size: 14px;
-    }
-    #player {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #000;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-      flex-direction: c
+const canais = [
+  {
+    nome: "A FERA DO MAR",
+    logo: "https://image.tmdb.org/t/p/w500/9Zfv4ApUjX3gl4umV8mVRX2dU9.jpg",
+    url: "https://playertv.net/filmes/aferadomar/playlist.m3u8"
+  },
+  {
+    nome: "A FUGA DAS GALINHAS",
+    logo: "https://image.tmdb.org/t/p/w500/3X3xZ2E1VlzDqgW8sELpAo0P5PL.jpg",
+    url: "https://playertv.net/filmes/afugadasgalinhas/playlist.m3u8"
+  },
+  {
+    nome: "A ORIGEM",
+    logo: "https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg",
+    url: "https://playertv.net/filmes/aorigem/playlist.m3u8"
+  },
+  {
+    nome: "A VIAGEM DE CHIHIRO",
+    logo: "https://image.tmdb.org/t/p/w500/oRvMaJOmapypFUcQqpgHMZA6qL9.jpg",
+    url: "https://playertv.net/filmes/aviagemdechihiro/playlist.m3u8"
+  },
+  {
+    nome: "ALADDIN",
+    logo: "https://image.tmdb.org/t/p/w500/3iYQTLGoy7QnjcUYRJ6p4T6nG2e.jpg",
+    url: "https://playertv.net/filmes/aladdin/playlist.m3u8"
+  },
+  {
+    nome: "AVATAR",
+    logo: "https://image.tmdb.org/t/p/w500/kmcqlZGaSh20zpTbuoF0Cdn07dT.jpg",
+    url: "https://playertv.net/filmes/avatar/playlist.m3u8"
+  },
+  {
+    nome: "BATMAN",
+    logo: "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+    url: "https://playertv.net/filmes/batman/playlist.m3u8"
+  },
+  {
+    nome: "BEE MOVIE",
+    logo: "https://image.tmdb.org/t/p/w500/2bXbqYdUdNVa8VIWXVfclP2ICtT.jpg",
+    url: "https://playertv.net/filmes/beemovie/playlist.m3u8"
+  },
+  {
+    nome: "BIG HERO 6",
+    logo: "https://image.tmdb.org/t/p/w500/9gLu47Zw5ertuFTZaxXOvNfy78T.jpg",
+    url: "https://playertv.net/filmes/bighero6/playlist.m3u8"
+  },
+  {
+    nome: "BOLT",
+    logo: "https://image.tmdb.org/t/p/w500/zQWbRxv0fUjRjJv3hZcU1p9q6fA.jpg",
+    url: "https://playertv.net/filmes/bolt/playlist.m3u8"
+  },
+  {
+    nome: "CARS",
+    logo: "https://image.tmdb.org/t/p/w500/abW5AzHDaIK1Uu2jWVoFfT1rD5n.jpg",
+    url: "https://playertv.net/filmes/cars/playlist.m3u8"
+  },
+  {
+    nome: "CINDERELA",
+    logo: "https://image.tmdb.org/t/p/w500/6Uj1qNXGZMEyZyxU9NCvVf1fTgk.jpg",
+    url: "https://playertv.net/filmes/cinderela/playlist.m3u8"
+  },
+  {
+    nome: "COCO",
+    logo: "https://image.tmdb.org/t/p/w500/gGEsBPAijhVUFoiNpgZXqRVWJt2.jpg",
+    url: "https://playertv.net/filmes/coco/playlist.m3u8"
+  },
+  {
+    nome: "CORALINE",
+    logo: "https://image.tmdb.org/t/p/w500/4U7hpTK0XTQBKT5X60bKmJd05ha.jpg",
+    url: "https://playertv.net/filmes/coraline/playlist.m3u8"
+  },
+  {
+    nome: "ENCANTO",
+    logo: "https://image.tmdb.org/t/p/w500/4j0PNHkMr5ax3IA8tjtxcmPU3QT.jpg",
+    url: "https://playertv.net/filmes/encanto/playlist.m3u8"
+  },
+  {
+    nome: "ENROLADOS",
+    logo: "https://image.tmdb.org/t/p/w500/ym1dxyOk4jFcSl4Q2zmRrA5BEEN.jpg",
+    url: "https://playertv.net/filmes/enrolados/playlist.m3u8"
+  },
+  {
+    nome: "FROZEN",
+    logo: "https://image.tmdb.org/t/p/w500/jIjdFXKUNtdf1bwqMrhearpyjMj.jpg",
+    url: "https://playertv.net/filmes/frozen/playlist.m3u8"
+  },
+  {
+    nome: "HOMEM ARANHA",
+    logo: "https://image.tmdb.org/t/p/w500/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg",
+    url: "https://playertv.net/filmes/homemaranha/playlist.m3u8"
+  },
+  {
+    nome: "HOMEM DE FERRO",
+    logo: "https://image.tmdb.org/t/p/w500/78lPtwv72eTNqFW9COBYI0dWDJa.jpg",
+    url: "https://playertv.net/filmes/homemdeferro/playlist.m3u8"
+  },
+  {
+    nome: "HOTEL TRANSILVANIA",
+    logo: "https://image.tmdb.org/t/p/w500/4t0mYVQZf8x4WzT2kR9tP2s3vZz.jpg",
+    url: "https://playertv.net/filmes/hoteltransilvania/playlist.m3u8"
+  },
+  {
+    nome: "KUNG FU PANDA",
+    logo: "https://image.tmdb.org/t/p/w500/wWt4JYXTg5Wr3xBW2phBrMKgp3x.jpg",
+    url: "https://playertv.net/filmes/kungfupanda/playlist.m3u8"
+  },
+  {
+    nome: "MADAGASCAR",
+    logo: "https://image.tmdb.org/t/p/w500/8KQJH3r4zZfZ3VfU6Y4ZCkxzgvN.jpg",
+    url: "https://playertv.net/filmes/madagascar/playlist.m3u8"
+  },
+  {
+    nome: "MOANA",
+    logo: "https://image.tmdb.org/t/p/w500/4qfXT9BtxeFuamR4lYRxkG0j0bA.jpg",
+    url: "https://playertv.net/filmes/moana/playlist.m3u8"
+  },
+  {
+    nome: "MONSTROS S.A.",
+    logo: "https://image.tmdb.org/t/p/w500/6tCpeYqU1hZ3z3t8uIvuXvYDn8U.jpg",
+    url: "https://playertv.net/filmes/monstrossa/playlist.m3u8"
+  },
+  {
+    nome: "OS INCRÍVEIS",
+    logo: "https://image.tmdb.org/t/p/w500/2LqaLgk4Z226KkgPJuiOQ58wvrm.jpg",
+    url: "https://playertv.net/filmes/osincriveis/playlist.m3u8"
+  }
+];
